@@ -14,6 +14,7 @@ require ('./services/passport')//require the passport.js file
 const mongoose = require('mongoose');
 const keys = require('./config/keys')
 mongoose.connect(keys.mongoURI);
+require('./models/User');
 
 
 const app = express();
