@@ -1,12 +1,6 @@
 const express = require('express'); //Common js module
 
-// ****************************************************************************
-// because require ('./services/passport') is not returning anything therefore*
-// *                   nothing to assign to passport.config ,                 *
-// *               so we can just use the require statement from              *
-// *          const passportConfig = require ('./services/passport')          *
-// ****************************************************************************
-require ('./services/passport')//require the passport.js file 
+
 
 // ****************************************************************************
 // *                          connect to mango (mlab)                         *
@@ -16,6 +10,13 @@ const keys = require('./config/keys')
 mongoose.connect(keys.mongoURI);
 require('./models/User');
 
+// ****************************************************************************
+// because require ('./services/passport') is not returning anything therefore*
+// *                   nothing to assign to passport.config ,                 *
+// *               so we can just use the require statement from              *
+// *          const passportConfig = require ('./services/passport')          *
+// ****************************************************************************
+require ('./services/passport')//require the passport.js file 
 
 const app = express();
 
