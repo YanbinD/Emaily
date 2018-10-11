@@ -3,13 +3,13 @@
 // *   export this function for index.js to call with the express app object  *
 // *                    pass the app object from index.js                     *
 // ****************************************************************************
-	module.exports = (app) => { 
-	// specify the provoder for passport
-		app.get('/auth/google',
-			passport.authenticate ('google', {
-			scope: ['profile', 'email']     //select the desire user information from the return info
-			})
-		);
+module.exports = (app) => { 
+// specify the provoder for passport
+	app.get('/auth/google',
+		passport.authenticate ('google', {
+		scope: ['profile', 'email']     //select the desire user information from the return info
+		})
+	);
 
 
 // ****************************************************************************
@@ -25,4 +25,19 @@
 	app.get('/api/current_user', (req, res) => {
 			res.send(req.user);
 		});
-	};
+
+// ****************************************************************************
+// *                      Route to handle log-out request                     *
+// ****************************************************************************
+	app.get('/api/logout', (req, res) => {
+// ****************************************************************************
+// *          req.logout() is a function that automatically attached          *
+// *            to the object by passport, when we call logout, it            *
+// *          takes the cookie that contains our USER id and it kills         *
+// *        the ID that is in there (aka you are not that user anymore)       *
+// ****************************************************************************
+		req.logout();
+		res.send(req.user); // this should send out undefined / no content 
+	}); 
+};//end of export function 
+
