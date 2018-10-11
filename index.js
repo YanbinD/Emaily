@@ -1,7 +1,4 @@
 const express = require('express'); //Common js module
-
-
-
 // ****************************************************************************
 // *                          connect to mango (mlab)                         *
 // ****************************************************************************
@@ -18,7 +15,26 @@ require('./models/User');
 // ****************************************************************************
 require ('./services/passport')//require the passport.js file 
 
+// ****************************************************************************
+// *                      for using cookies in passport                       *
+// ****************************************************************************
+const cookieSession = require ('cookie-session');
+const passport = require ('passport');
+
+
 const app = express();
+
+app.use (
+	cookieSession( {
+		//age has to be in the unit of ms 
+		maxAge : 24 * 60 * 60 * 1000,
+		//encrpted the cookie so our user info will not be intercepted, stored in keys.js
+		keys: [keys.cookieKey]
+	})
+);
+app.use (passport.initialize());
+app.use (passport.session());
+
 
 // ****************************************************************************
 // *            const authRouths = require ('./routes/authRouths')            *
