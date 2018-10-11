@@ -1,15 +1,15 @@
-const passport = require ('passport');
+	const passport = require ('passport');
 // ****************************************************************************
 // *   export this function for index.js to call with the express app object  *
 // *                    pass the app object from index.js                     *
 // ****************************************************************************
-module.exports = (app) => { 
-// specify the provoder for passport
-	app.get('/auth/google',
-		passport.authenticate ('google', {
-		scope: ['profile', 'email']     //select the desire user information from the return info
-		})
-	);
+	module.exports = (app) => { 
+	// specify the provoder for passport
+		app.get('/auth/google',
+			passport.authenticate ('google', {
+			scope: ['profile', 'email']     //select the desire user information from the return info
+			})
+		);
 
 
 // ****************************************************************************
@@ -18,4 +18,11 @@ module.exports = (app) => {
 // *         	and this time we are trying to extract user information         *
 // ****************************************************************************
 	app.get('/auth/google/callback', passport.authenticate('google'));
-};
+
+// ****************************************************************************
+// *               Route that examine the property of req.user                *
+// ****************************************************************************
+	app.get('/api/current_user', (req, res) => {
+			res.send(req.user);
+		});
+	};
