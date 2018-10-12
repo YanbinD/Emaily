@@ -9,11 +9,14 @@ import { createStore, applyMiddleware} from 'redux'
 // ----------- STEP 2 -------------
 import App from './components/App'
 
+// ----------- STEP 3 -------------
+import reducers from './reducers';
+
 //== the first argument for createStore is all the different prodducers that we have inside our application 
 // dummy reducer () => []
 //== the second argument is the initial state of our application, use for server-side rendering, here just empty object 
 //== the third argument is the applymiddleware call (reduxthung will be added later )
-const store = createStore(() => [], {}, applyMiddleware());
+const store = createStore(reducers, {}, applyMiddleware());
 
 ReactDOM.render(
     <Provider store={store}><App /></Provider>, 
