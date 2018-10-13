@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { FECTH_USER } from './types';
+import { FETCH_USER } from './types';
 
-const fetchUser = () => {
-	return function () {
+export const fetchUser = () => {
+	return function (dispatch) {
 		axios.get('/api/current_user')
-		.then (res => dispatch({ type:FECTH_USER, payload: res})) //use axios to make a get request to back end 		
-	}
-}
+		.then (res => dispatch({ type:FETCH_USER, payload: res})) //use axios to make a get request to back end 		
+	};
+};
 
 //==== V! of the code , call the dispath function after the promise from the get request return 

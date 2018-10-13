@@ -5,10 +5,10 @@ class Header extends Component {
 		return (
 		<nav> 
 			<div className = "nav-wrapper">
-				<a href="/"class="brand-logo"> &nbsp;&nbsp;&nbsp; Logo</a>
+				<a href="/" className="brand-logo"> &nbsp;&nbsp;&nbsp; Logo</a>
 				<ul className = "right" >
 					<li> 
-						<a> Login with Google &nbsp; </a> 
+						<a href="/api/auth/google"> Login with Google &nbsp; </a> 
 					</li>
 				</ul>
 			</div>

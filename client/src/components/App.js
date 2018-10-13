@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 
 // step2 
 // BrowserRouter is the Brain of the react router, 
@@ -9,6 +9,11 @@ import React from 'react'
 //		actually visible on the screen
 import {BrowserRouter, Route} from 'react-router-dom'; 
 
+//(L79) 
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
+
 //dummy components for demo
 import Header from './Header';
 const DashBoard = () => <h2> DashBoard </h2>
@@ -16,12 +21,14 @@ const SurveyNew = () => <h2> SurveyNew </h2>
 const Landing = () => <h2> Landing </h2>
 
 
-class App extends component {
+class App extends Component {
 
-	//the instance that this component was mounted to the screen 
-	//go figure out whether or not the current user is actually signed in 
+
+	// (L78) the instance that this component was mounted to the screen 
+	// go figure out whether or not the current user is actually signed in 
+	// Time different between didMount and willMount is small but willMount might be call multiple times 
 	componentDidMount() {
-		
+		this.props.fetchUser();
 	}
 
 	render () {
@@ -41,4 +48,4 @@ class App extends component {
 }
 
 
-export default App;
+export default connect(null, actions)(App);
