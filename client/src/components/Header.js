@@ -27,16 +27,12 @@ class Header extends Component {
 			<nav> 
 				<div className = "nav-wrapper  pink lighten-3">
 					<a href="/" className="brand-logo"> &nbsp;&nbsp;&nbsp; Logo</a>
-
-				
 					<ul class="right hide-on-med-and-down">
-       				 
 					{/* needs to changed if logged in */}
 {/*						<li> 
 							<a href="/api/auth/google"> Login with Google &nbsp; </a> 
 						</li>*/}
-
-						{this.renderContent()}
+						{this.renderContent()}{/*changed in L83*/}
 					</ul>
 
 
