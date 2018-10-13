@@ -16,8 +16,16 @@ const SurveyNew = () => <h2> SurveyNew </h2>
 const Landing = () => <h2> Landing </h2>
 
 
-const App = () => {
-	return (
+class App extends component {
+
+	//the instance that this component was mounted to the screen 
+	//go figure out whether or not the current user is actually signed in 
+	componentDidMount() {
+		
+	}
+
+	render () {
+		return (
 		<div className = "container"> 
 			<BrowserRouter> 
 				<div> 
@@ -28,7 +36,9 @@ const App = () => {
 				</div>
 			</BrowserRouter>
 		</div>
-	);
-}; 
+		);
+	}
+}
+
 
 export default App;
