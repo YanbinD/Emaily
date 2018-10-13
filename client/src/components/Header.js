@@ -1,23 +1,54 @@
 import React, { Component } from 'react'
+//connect the component to redux store L82
+import { connect } from 'react-redux';
 
 class Header extends Component {
-	render() {
-		return (
-		<nav> 
-			<div className = "nav-wrapper">
-				<a href="/" className="brand-logo"> &nbsp;&nbsp;&nbsp; Logo</a>
-				<ul className = "right" >
-					<li> 
-						<a href="/api/auth/google"> Login with Google &nbsp; </a> 
-					</li>
-				</ul>
-			</div>
-		</nav>
-		);
+
+
+	renderContent() {
+		switch (this.props.auth) {
+			case null:
+				return "still loading";
+			case false:
+				return "logged out";
+			default:
+				return "logged in";
+		}	
 	}
+
+		render() {
+			// console.log(this.props);
+
+			return (
+			<nav> 
+				<div className = "nav-wrapper">
+					<a href="/" className="brand-logo"> &nbsp;&nbsp;&nbsp; Logo</a>
+
+				
+					<ul className = "right" >
+					{/* needs to changed if logged in */}
+{/*						<li> 
+							<a href="/api/auth/google"> Login with Google &nbsp; </a> 
+						</li>*/}
+
+						{this.renderContent()}
+					</ul>
+
+
+				</div>
+			</nav>
+			);
+		}
 }
 
-export default Header;
+//L81 Step3
+function mapStateToProps(state) {
+	return {auth: state.auth};
+}
+
+
+//L81 step 2
+export default connect(mapStateToProps) (Header);
 
 
 //from materialize CSS library
