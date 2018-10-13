@@ -11,12 +11,14 @@ class Header extends Component {
 				return ;
 			case false:
 				// return <a href="/auth/google"> Login with Google &nbsp; </a> 
-					return <li><a href="/auth/google" class="waves-effect waves-light btn light-blue lighten-3">
+					return <li><a href="/auth/google" class="waves-effect waves-light btn blue lighten-4">
 						<span class="black-text">Login with Google</span>
-								</a></li>;
+					</a></li>;
 						   
 			default:
-				return "logged in";
+					return <li><a href="/api/logout" class="waves-effect waves-light btn blue lighten-4">
+							<span class="black-text">Log Out</span>
+						</a></li>;
 		}	
 	}
 

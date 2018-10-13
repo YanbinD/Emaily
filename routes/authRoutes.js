@@ -41,7 +41,9 @@ module.exports = (app) => {
 // *        the ID that is in there (aka you are not that user anymore)       *
 // ****************************************************************************
 		req.logout();
-		res.send(req.user); // this should send out undefined / no content 
+		//res.send(req.user); // this should send out undefined / no content 
+		//added in L85 to handle logout 
+		res.redirect('/');
 	}); 
 };//end of export function 
 
