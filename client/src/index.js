@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+//materialze CSS
+import 'materialize-css/dist/css/materialize.min.css'
+
 //L64 create the provider tag 
 // ----------- STEP 1 -------------
 import { Provider } from 'react-redux'
