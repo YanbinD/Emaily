@@ -13,7 +13,6 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-
 //dummy components for demo
 import Header from './Header';
 const DashBoard = () => <h2> DashBoard </h2>
@@ -28,7 +27,7 @@ class App extends Component {
 	// go figure out whether or not the current user is actually signed in 
 	// Time different between didMount and willMount is small but willMount might be call multiple times 
 	componentDidMount() {
-		this.props.fetchUser();
+		this.props.fetchUser(); //L79
 	}
 
 	render () {
@@ -47,5 +46,5 @@ class App extends Component {
 	}
 }
 
-
+// L79
 export default connect(null, actions)(App);
