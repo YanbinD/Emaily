@@ -1,8 +1,14 @@
 const keys = require ('../config/keys');
 const stripe = require ('stripe') (keys.stripeSecretKey);
 
+const requireLogin = require ('../middlewares/requireLogin');
+
 module.exports = (app) => { 
-	app.post('/api/stripe', async (req, res) => {
+	app.post('/api/stripe', requireLogin, async (req, res) => {
+
+		//L106, we can pass in as many function/middleware that we want, but one of them has to return the response
+		//requireLogin will run  
+
 		//console.log(req.body); //whenever the request body is parsed, it will be available under the req.body property 
 		const charge = await stripe.charges.create({
 			amount: 500,
