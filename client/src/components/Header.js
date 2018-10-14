@@ -12,17 +12,16 @@ class Header extends Component {
 				return ;
 			case false:
 				// return <a href="/auth/google"> Login with Google &nbsp; </a> 
-					return <li><a href="/auth/google" class="waves-effect waves-light btn blue lighten-4">
-						<span class="black-text">Login with Google</span>
+					return <li><a href="/auth/google" className="waves-effect waves-light btn blue lighten-5">
+						<span className="indigo-text text-darken-4">Login with Google</span>
 					</a></li>;
 						   
 			default:
-					return <li><a href="/api/logout" class="waves-effect waves-light btn blue lighten-4">
-							<span class="black-text">Log Out</span>
+					return <li><a href="/api/logout" className="waves-effect waves-light btn blue lighten-5 blue-grey-text text-darken-4">
+							Log Out
 						</a></li>;
 		}	
 	}
-
 		render() {
 			// console.log(this.props);
 
@@ -32,15 +31,9 @@ class Header extends Component {
 					<Link to={this.props.auth ? '/surveys' : '/ '} 
 						className="brand-logo"> &nbsp;&nbsp;&nbsp; Logo 
 					</ Link>
-					<ul class="right hide-on-med-and-down">
-					{/* needs to changed if logged in */}
-{/*						<li> 
-							<a href="/api/auth/google"> Login with Google &nbsp; </a> 
-						</li>*/}
+					<ul className="right">
 						{this.renderContent()}{/*changed in L83*/}
 					</ul>
-
-
 				</div>
 			</nav>
 			);

@@ -16,8 +16,7 @@ import * as actions from '../actions';
 //dummy components for demo
 import Header from './Header';
 import Landing from './Landing';
-
-const DashBoard = () => <h2> DashBoard </h2>
+import DashBoard from './DashBoard';
 const SurveyNew = () => <h2> SurveyNew </h2>
 
 
