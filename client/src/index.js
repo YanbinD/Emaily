@@ -32,6 +32,3 @@ ReactDOM.render(
 );
 
 // The provider tag is an react component that knows how to read changes from our redux store, any time the redux store get some new states produce inside of it, the provider tag will inform all its CHILDREN component, and will update all those components with those new states 
-
-console.log('STRIPE KEY IS ', process.env.REACT_APP_STRIPE_KEY);
-console.log('Environment IS ', process.env.NODE_ENV);

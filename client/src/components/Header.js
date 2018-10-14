@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 //connect the component to redux store L82
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'; //L87
-
+import Payments from './Payments';
 class Header extends Component {
-
 
 	renderContent() {
 		switch (this.props.auth) {
@@ -17,14 +16,14 @@ class Header extends Component {
 					</a></li>;
 						   
 			default:
-					return <li><a href="/api/logout" className="waves-effect waves-light btn blue lighten-5 blue-grey-text text-darken-4">
-							Log Out
-						</a></li>;
+					return [ 
+							<li> <Payments /> </li>,
+							<li><a href="/api/logout" className="waves-effect waves-light btn blue lighten-5 blue-grey-text text-darken-4">Log Out</a></li>
+						];
 		}	
 	}
 		render() {
 			// console.log(this.props);
-
 			return (
 			<nav> 
 				<div className = "nav-wrapper  pink lighten-3">
