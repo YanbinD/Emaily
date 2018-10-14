@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 //connect the component to redux store L82
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'; //L87
 
 class Header extends Component {
 
@@ -28,7 +29,9 @@ class Header extends Component {
 			return (
 			<nav> 
 				<div className = "nav-wrapper  pink lighten-3">
-					<a href="/" className="brand-logo"> &nbsp;&nbsp;&nbsp; Logo</a>
+					<Link to={this.props.auth ? '/surveys' : '/ '} 
+						className="brand-logo"> &nbsp;&nbsp;&nbsp; Logo 
+					</ Link>
 					<ul class="right hide-on-med-and-down">
 					{/* needs to changed if logged in */}
 {/*						<li> 
