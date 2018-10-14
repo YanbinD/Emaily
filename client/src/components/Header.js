@@ -32,7 +32,7 @@ class Header extends Component {
 							href="/api/logout"
 							className="waves-effect waves-light btn blue lighten-5 blue-grey-text text-darken-4"
 						> 
-						Log Out
+							Log Out
 						</a>
 					</li>
 				];
@@ -68,14 +68,3 @@ function mapStateToProps(state) {
 //L81 step 2
 export default connect(mapStateToProps)(Header);
 
-//from materialize CSS library
-// <nav>
-//   <div class="nav-wrapper">
-//     <a href="#" class="brand-logo">Logo</a>
-//     <ul id="nav-mobile" class="right hide-on-med-and-down">
-//       <li><a href="sass.html">Sass</a></li>
-//       <li><a href="badges.html">Components</a></li>
-//       <li><a href="collapsible.html">JavaScript</a></li>
-//     </ul>
-//   </div>
-// </nav>
