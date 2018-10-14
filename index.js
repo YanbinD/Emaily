@@ -1,4 +1,11 @@
 const express = require('express'); //Common js module
+
+// ****************************************************************************
+// *                      for using cookies in passport                       *
+// ****************************************************************************
+const cookieSession = require ('cookie-session');
+const passport = require ('passport');
+
 // ****************************************************************************
 // *                          connect to mango (mlab)                         *
 // ****************************************************************************
@@ -15,11 +22,7 @@ require('./models/User');
 // ****************************************************************************
 require ('./services/passport')//require the passport.js file 
 
-// ****************************************************************************
-// *                      for using cookies in passport                       *
-// ****************************************************************************
-const cookieSession = require ('cookie-session');
-const passport = require ('passport');
+
 
 
 const app = express();
