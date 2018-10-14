@@ -25,16 +25,14 @@ class Header extends Component {
 
 			default:
 				return [
-					<li key="1">
-						{" "}
-						<Payments />{" "}
-					</li>,
+					<li key="1"> <Payments /></li>,
+					<li key="3" style = {{ margin: '0 10px'}}> Credits: {this.props.auth.credits} </li>,
 					<li key="2">
 						<a
 							href="/api/logout"
 							className="waves-effect waves-light btn blue lighten-5 blue-grey-text text-darken-4"
-						>
-							Log Out
+						> 
+						Log Out
 						</a>
 					</li>
 				];
