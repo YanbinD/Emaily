@@ -23,9 +23,16 @@ require('./models/User');
 require ('./services/passport')//require the passport.js file 
 
 
-
-
 const app = express();
+
+
+//L101 added body parser 
+const bodyParser = require ('body-parser'); 
+
+app.use(bodyParser.json()); 
+//any time a post/put/patch or anything that has a request body will pass thru this body parser middleware  
+
+
 
 app.use (
 	cookieSession( {
@@ -47,6 +54,9 @@ app.use (passport.session());
 //combine the two statment since authRouths is not being use anywhere else 
 require ('./routes/authRoutes')(app);
 
+
+//L99 
+require ('./routes/billingRoutes')(app); 
 
 // app.get('/', function(req, res){
 // 	res.send({hello: "world"});
