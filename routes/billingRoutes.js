@@ -10,6 +10,11 @@ module.exports = (app) => {
 			description: "$5 for  credits",
 			source : req.body.id
 		});
-		console.log(charge);
+
+		//passport enable us to access the current user this way L104
+		req.user.credits += 5;
+		const user = await req.user.save();
+		//user on left is the database version of the user model just saved 
+		res.send(user); 
 	});
 };//end of export function 
