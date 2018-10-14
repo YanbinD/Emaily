@@ -1,17 +1,24 @@
-import React, { Component } from 'react';
-import StripeCheckout from 'react-stripe-checkout';
+import React, { Component } from "react";
+import StripeCheckout from "react-stripe-checkout";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class Payments extends Component {
+	render() {
+		return (
+			<StripeCheckout
+				name="Emaily"
+				description="$5 for 5 credit "
+				amount={500}
+				token={token => this.props.handleStripeToken(token)}
+				stripeKey={process.env.REACT_APP_STRIPE_KEY}
+			>
+				{/*amount is in cents*/}
 
-	render () {
+				<button className="btn"> Add Credits </button>
+			</StripeCheckout>
+		);
+	}
+}
 
-		return <StripeCheckout amount = { 500 } 
-				token = {token => console.log(token)}
-				stripeKey = {process.env.REACT_APP_STRIPE_KEY}
-				/>  //amount is in cents
-
-	};
-};
-
-
-export default Payments;
+export default connect(null,actions)(Payments);
