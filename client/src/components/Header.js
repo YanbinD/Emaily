@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom"; //L87
 import Payments from "./Payments";
+
 class Header extends Component {
 	renderContent() {
 		switch (this.props.auth) {
@@ -12,10 +13,8 @@ class Header extends Component {
 				// return <a href="/auth/google"> Login with Google &nbsp; </a>
 				return (
 					<li>
-						<a
-							href="/auth/google"
-							className="waves-effect waves-light btn blue lighten-5"
-						>
+						<a href="/auth/google"
+							className="waves-effect waves-light btn blue lighten-5"	>
 							<span className="indigo-text text-darken-4">
 								Login with Google
 							</span>
@@ -45,8 +44,7 @@ class Header extends Component {
 				<div className="nav-wrapper  pink lighten-3">
 					<Link
 						to={this.props.auth ? "/surveys" : "/ "}
-						className="brand-logo"
-					>
+						className="brand-logo"	>
 						{" "}
 						&nbsp;&nbsp;&nbsp; Logo
 					</Link>

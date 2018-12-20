@@ -17,7 +17,7 @@ const DashBoard = () => {
 							<i className="material-icons">more_vert</i>
 						</span>
 						<p>
-							<a href="#">This is a link</a>
+							<a href="/#">This is a link</a>
 						</p>
 					</div>
 					<div className="card-reveal">

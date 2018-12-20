@@ -14,8 +14,9 @@ module.exports = (app) => {
 
 // ****************************************************************************
 // * 	for this route, which will be redirect by google along with the CODE that was issued by google,*
-// * 	but as this time, passport sees the CODE in the url and knows that our application has already connected to the server *
-// *         	and this time we are trying to extract user information         *
+// * 	 **** despite calling the same passport.authenticate() function 
+// *     but as this time, passport sees the CODE in the url and knows that our application has already connected to the server *
+// *     then passport will help us  extract user information         *
 // ****************************************************************************
 	app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
 			 //redirect the user after logged in --> DashBoard screen maybe 
