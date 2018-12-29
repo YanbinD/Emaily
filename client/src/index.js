@@ -2,20 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "materialize-css/dist/css/materialize.min.css"; //materialze CSS
 
-//L64 create the provider tag: Which allows nested component to have access to global states
-// ** Provider tag is a react component that knows how to read changes from our redux store anytime
-// that the store get new states, the provider will inform all its children component
-// ----------- STEP 1 -------------
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 
-// ----------- STEP 2 -------------
 import App from "./components/App";
-
-// ----------- STEP 3 -------------
 import reducers from "./reducers";
-
-// ----------- Adding redux -thunk (L76) --------------
 import reduxthunk from "redux-thunk";
 
 import axios from 'axios';
