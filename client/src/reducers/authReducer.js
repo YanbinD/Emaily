@@ -4,7 +4,7 @@ import { FETCH_USER } from '../actions/types';
 
 //1st argu: stateObject that is responsible for this resuder 
 //2nd argu: action object 
-export default function (state = null, action) {
+export default function (state = {}, action) {
 	
 	switch (action.type) {
 		//L81 

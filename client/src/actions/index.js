@@ -24,11 +24,11 @@ import { FETCH_USER } from "./types";
 
 //=  L81 change the payload to just res.data because we do not care about anything else
 export const fetchUser = () => async dispatch => {
-	const res = await axios.get("/api/current_user");
-	dispatch({ type: FETCH_USER, payload: res.data }); //use axios to make a get request to back end
+  const res = await axios.get("/api/current_user");
+  dispatch({ type: FETCH_USER, payload: res.data }); //use axios to make a get request to back end
 };
 
-export const handleStripeToken = (token) => async dispatch => {
-	const res = await axios.post("/api/stripe", token);
-	dispatch({ type: FETCH_USER, payload: res.data });
+export const handleStripeToken = token => async dispatch => {
+  const res = await axios.post("/api/stripe", token);
+  dispatch({ type: FETCH_USER, payload: res.data });
 };
