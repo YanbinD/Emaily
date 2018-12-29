@@ -18,6 +18,9 @@ import reducers from "./reducers";
 // ----------- Adding redux -thunk (L76) --------------
 import reduxthunk from "redux-thunk";
 
+import axios from 'axios';
+window.axios = axios;
+
 //== the first argument for createStore is all the different prodducers that we have inside our application
 // dummy reducer () => []
 //== the second argument is the initial state of our application, use for server-side rendering, here just empty object
