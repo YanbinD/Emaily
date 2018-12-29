@@ -12,7 +12,7 @@ const mongoose = require("mongoose");
 const keys = require("./config/keys");
 mongoose.connect(keys.mongoURI);
 require("./models/User"); // make sure the create the collection before using it in passport (require passport)
-
+require("./models/Survey");
 // ****************************************************************************
 // because require ('./services/passport') is not returning anything therefore*
 // *                   nothing to assign to passport.config ,                 *
