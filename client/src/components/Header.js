@@ -10,13 +10,9 @@ class Header extends Component {
       case null:
         return;
       case false:
-        // return <a href="/auth/google"> Login with Google &nbsp; </a>
         return (
           <li>
-            <a
-              href="/auth/google"
-              className="waves-effect waves-light btn blue lighten-5"
-            >
+            <a href="/auth/google" className="waves-effect waves-light btn blue lighten-5" >
               <span className="indigo-text text-darken-4">
                 Login with Google
               </span>
@@ -38,17 +34,12 @@ class Header extends Component {
     }
   }
   render() {
-    // console.log(this.props);
     return (
       <nav>
-        <div className="nav-wrapper  pink lighten-3">
-          <Link to={this.props.auth ? "/surveys" : "/ "} className="brand-logo">
-            {" "}
-            Logo
-          </Link>
+        <div className="nav-wrapper  pink lighten-3" style={{borderRadius: "5px"}}>
+          <Link to={this.props.auth ? "/surveys" : "/ "} className="brand-logo" style={{margin : "0 20px"}}> Logo </Link>
           <ul className="right">
             {this.renderContent()}
-            {/*changed in L83*/}
           </ul>
         </div>
       </nav>

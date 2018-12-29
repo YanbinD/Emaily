@@ -17,7 +17,7 @@ import * as actions from "../actions";
 import Header from "./Header";
 import Landing from "./Landing";
 import DashBoard from "./DashBoard";
-const SurveyNew = () => <h2> SurveyNew </h2>;
+import SurveyNew from "./Surveys/SurveyNew"
 
 class App extends Component {
   // (L78) the instance that this component was mounted to the screen
