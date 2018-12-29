@@ -28,7 +28,7 @@ passport.use(
         } else {
           // use the model to create a new user instance (data entry )
           console.log("new user created " + profile.id);
-          new User({ googleID: profile.id })
+          new UserInDB({ googleID: profile.id })
             .save()
             .then(user => done(null, user));
         }
