@@ -6,7 +6,7 @@ const { Schema } = mongoose; // equal to const Schema = mongoose.Schema;
 const userSchema = new Schema ( {
 	//name : type
 	googleID: String,
-	credits: {type: Number, default: 0}
+	credits: {type: Number, default: 0} //pass in a value like string or define types with object 
 })
 
 // ****************************************************************************
