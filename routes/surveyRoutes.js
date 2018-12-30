@@ -12,15 +12,19 @@ module.exports = app => {
 
 
     app.post('/api/surveys/webhooks', (req, res) => {
-        console.log( " body  " )
-        console.log ( req.body);
+        // console.log( " body  " )
+        // console.log ( req.body);
         
-        const event = _.map(req.body, event => {
+        const event = _.map(req.body, ({email, url}) => {
             const p = new Path('/api/surveys/:surveyId/:choice');
-            const pathname = new URL (event.url).pathname;
-            console.log(p.test(pathname));
-
+            const pathname = new URL (url).pathname;
+            const match = p.test(pathname);
+            if (match) {
+                return {email : email, surveyId : match.surveyId, choice : match.choice};
+            }
         })
+
+        console.log(event);
         // _.chain(req.body)
         //   .map(({ email, url }) => {
         //     const match = p.test(new URL(url).pathname);
