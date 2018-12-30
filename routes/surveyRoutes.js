@@ -8,61 +8,50 @@ const Mailer = require ('../services/Mailer');
 const SurveyTemplate = require  ('../services/emailTemplates/surveyTemplate');
 
 const Survey = mongoose.model('surveys'); 
+
 module.exports = app => {
 
+    // ** route for handling Webhooks post request 
     app.post('/api/surveys/webhooks', (req, res) => {
         // console.log( " body  " )
         // console.log ( req.body);
+        const p = new Path('/api/surveys/:surveyId/:choice');
         
-        // Stage one: filter out object from URL 
-        const events = _.map(req.body, ({email, url}) => {
-            const p = new Path('/api/surveys/:surveyId/:choice');
-            const pathname = new URL (url).pathname;
-            const match = p.test(pathname);
+        _.chain(req.body)
+          .map(({ email, url }) => {
+            const match = p.test(new URL(url).pathname);
             if (match) {
-                return {email : email, surveyId : match.surveyId, choice : match.choice};
+              return { email, surveyId: match.surveyId, choice: match.choice };
             }
-        })
-        // Stage 1.5: filter out the undefined event from stage 1
-        const compactEvent = _.compact(events); 
-
-        // Stage 2 : remove duplicate event  @param1: array @param2,3 property that needs to be unique 
-        const uniqueEvent = _.uniqBy(compactEvent, 'email', 'surveyId'); 
-
-        console.log(uniqueEvent);
-        // _.chain(req.body)
-        //   .map(({ email, url }) => {
-        //     const match = p.test(new URL(url).pathname);
-        //     if (match) {
-        //       return { email, surveyId: match.surveyId, choice: match.choice };
-        //     }
-        //   })
-        //   .compact()
-        //   .uniqBy('email', 'surveyId')
-        //   .each(({ surveyId, email, choice }) => {
-        //     Survey.updateOne(
-        //       {
-        //         _id: surveyId,
-        //         recipients: {
-        //           $elemMatch: { email: email, responded: false }
-        //         }
-        //       },
-        //       {
-        //         $inc: { [choice]: 1 },
-        //         $set: { 'recipients.$.responded': true },
-        //         lastResponded: new Date()
-        //       }
-        //     ).exec();
-        //   })
-        //   .value();
-    
+          })
+          .compact()
+          .uniqBy('email', 'surveyId')
+          .each(({ surveyId, email, choice }) => {
+            Survey.updateOne( // even if this is a async piece, we do not need use async feature because the request can be responded even befroe the query is executed 
+              {
+                _id: surveyId,
+                recipients: {
+                  $elemMatch: { email: email, responded: false }
+                }
+              },
+              {
+                $inc: { [choice]: 1 },
+                $set: { 'recipients.$.responded': true },
+                lastResponded: new Date()
+              }
+            ).exec();
+          })
+          .value();
+        
         res.send({});
       });
 
+    // ** route for directing USER back to a thank you page 
     app.get('/api/surveys/:surveyId/:choice', (req, res) => {
-        res.send('Thanks for voting!');
-      });
-      
+        res.send('<h1> Thanks for voting! Your feedback is appreciated </h1>');
+    });
+    
+    // ** route for sending off a mailer to sendgrid
     app.post('/api/surveys', requireLogin, minimumCredit, async (req, res) => {
         const {title, subject, body, recipients} = req.body; 
         const survey = new Survey ({
@@ -90,3 +79,17 @@ module.exports = app => {
     });
 };
 
+
+       // // Stage one: filter out object from URL 
+        // const events = _.map(req.body, ({email, url}) => {
+        //     const pathname = new URL (url).pathname;
+        //     const match = p.test(pathname);
+        //     if (match) {
+        //         return {email : email, surveyId : match.surveyId, choice : match.choice};
+        //     }
+        // })
+        // // Stage 1.5: filter out the undefined event from stage 1
+        // const compactEvent = _.compact(events); 
+        // // Stage 2 : remove duplicate event  @param1: array @param2,3 property that needs to be unique 
+        // const uniqueEvent = _.uniqBy(compactEvent, 'email', 'surveyId'); 
+        // console.log(uniqueEvent);
