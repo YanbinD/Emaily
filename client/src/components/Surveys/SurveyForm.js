@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
 import SurveyField from './SurveyField';
-// import validateEmails from '../../utils/validateEmails';
+import validateEmails from '../../utils/validateEmails';
 import formFields from './formFields';
 
 // reduxForm is similar to connect, which enable connection between the form and redux store
@@ -34,7 +34,7 @@ renderFields() {
   render() {
     return (
       <div style={{padding:"10px"}}>
-        <form onSubmit={this.props.handleSubmit(values => console.log(values))}>
+        <form onSubmit={this.props.handleSubmit( this.props.onSurveySubmit)}>
           {this.renderFields()}
           <Link to="/surveys" className="red btn-flat white-text">
             Cancel
@@ -49,5 +49,26 @@ renderFields() {
   }
 }
 
+function validate(values) {
+    const errors = {};
+  
+    errors.recipients = validateEmails(values.recipients || '');
+    // if (!values.title) {
+    //     errors.title = 'you much provide a title'
+    // }
+    _.each(formFields, ({ name }) => {
+      if (!values[name]) {
+        errors[name] = 'You must provide a value';
+      }
+    });
+  
+    return errors;
+  }  
+
 // the argument in reduxForm() is to customize how our form behave
-export default reduxForm({ form: "surveyForm" })(SurveyForm);
+export default reduxForm({ 
+    validate : validate,
+    form: "surveyForm" ,
+    destroyOnUnmount : false
+})(SurveyForm);
+// destroyOnUnmount allow the form entries to be persisted after submit
