@@ -16,7 +16,7 @@ class Payments extends Component {
       >
         {/*amount is in cents*/}
 
-        <button className="btn"> Add Credits </button>
+        <button className="btn blue lighten-2"> Add Credits </button>
       </StripeCheckout>
     );
   }
