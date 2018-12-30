@@ -36,6 +36,6 @@ export const handleStripeToken = token => async dispatch => {
 export const submitSurvey = (values, history) => async dispatch => {
   const res = await axios.post('/api/surveys', values);
 
-  history.push('/surveys');
+  history.push('/surveys'); //redirect after adding withRouter helper on SurveyFormReview 
   dispatch({ type: FETCH_USER, payload: res.data });
 };

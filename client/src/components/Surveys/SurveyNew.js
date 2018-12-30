@@ -26,7 +26,8 @@ class SurveyNew extends Component {
     return <div>{this.renderContent()}</div>;
   }
 }
-
+// by default, destoryOnUnmount is true, therefore when <SurveyNew /> unmount, 
+// the form value will be destory 
 export default reduxForm({
     form: 'surveyForm'
 })(SurveyNew);
