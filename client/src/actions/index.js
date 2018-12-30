@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_USER } from "./types";
+import { FETCH_USER, FETCH_SURVEYS}  from "./types";
 
 //==== V1 of the code , call the dispath function after the promise from the get request return
 //fetchUser action creater
@@ -39,3 +39,10 @@ export const submitSurvey = (values, history) => async dispatch => {
   history.push('/surveys'); //redirect after adding withRouter helper on SurveyFormReview 
   dispatch({ type: FETCH_USER, payload: res.data });
 };
+
+export const fetchSurveys = () => async dispatch => {
+  const res = await axios.get("/api/surveys");
+  dispatch({ type : FETCH_SURVEYS, payload: res.data});
+}
+
+
