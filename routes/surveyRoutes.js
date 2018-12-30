@@ -77,6 +77,13 @@ module.exports = app => {
             res.status(422).send(err); //422 unprocessable entity 
           }
     });
+
+    app.get('/api/surveys', requireLogin, async (req, res) => {
+        // tell mongoose do not return the list of recipients 
+        const surveys = await Survey.find({ _user : req.user.id})
+        .select ({ recipients : false }); 
+    })
+
 };
 
 
