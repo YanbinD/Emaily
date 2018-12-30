@@ -23,7 +23,7 @@ class SurveyNew extends Component {
   }
 
   render() {
-    return <div>{this.renderContent()}</div>;
+    return (<div>{this.renderContent()}</div>);
   }
 }
 // by default, destoryOnUnmount is true, therefore when <SurveyNew /> unmount, 

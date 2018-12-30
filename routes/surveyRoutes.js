@@ -78,11 +78,13 @@ module.exports = app => {
           }
     });
 
+    // ** route for fetching a list of surveys 
     app.get('/api/surveys', requireLogin, async (req, res) => {
-        // tell mongoose do not return the list of recipients 
-        const surveys = await Survey.find({ _user : req.user.id})
-        .select ({ recipients : false }); 
-    })
+      const surveys = await Survey.find({ _user: req.user.id }).select({
+        recipients: false
+      });
+      res.send(surveys);
+    });
 
 };
 

@@ -35,7 +35,7 @@ class App extends Component {
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/surveys" component={DashBoard} />
-            <Route exact path="/surveys/new" component={SurveyNew} />
+            <Route path="/surveys/new" component={SurveyNew} />
           </div>
         </BrowserRouter>
       </div>
