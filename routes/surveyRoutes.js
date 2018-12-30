@@ -10,12 +10,12 @@ const SurveyTemplate = require  ('../services/emailTemplates/surveyTemplate');
 const Survey = mongoose.model('surveys'); 
 module.exports = app => {
 
-
     app.post('/api/surveys/webhooks', (req, res) => {
         // console.log( " body  " )
         // console.log ( req.body);
         
-        const event = _.map(req.body, ({email, url}) => {
+        // Stage one: filter out object from URL 
+        const events = _.map(req.body, ({email, url}) => {
             const p = new Path('/api/surveys/:surveyId/:choice');
             const pathname = new URL (url).pathname;
             const match = p.test(pathname);
@@ -23,8 +23,13 @@ module.exports = app => {
                 return {email : email, surveyId : match.surveyId, choice : match.choice};
             }
         })
+        // Stage 1.5: filter out the undefined event from stage 1
+        const compactEvent = _.compact(events); 
 
-        console.log(event);
+        // Stage 2 : remove duplicate event  @param1: array @param2,3 property that needs to be unique 
+        const uniqueEvent = _.uniqBy(compactEvent, 'email', 'surveyId'); 
+
+        console.log(uniqueEvent);
         // _.chain(req.body)
         //   .map(({ email, url }) => {
         //     const match = p.test(new URL(url).pathname);
