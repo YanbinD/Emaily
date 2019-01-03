@@ -27,6 +27,7 @@ const app = express();
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
+// make data to be available for req.body
 //any time a post/put/patch or anything that has a request body will pass thru this body parser middleware
 
 // ================== FOR using cookies with passport ====================
